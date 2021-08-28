@@ -37,34 +37,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Posts",
-          style: TextStyle(letterSpacing: 1, fontSize: 30),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Posts",
+            style: TextStyle(letterSpacing: 1, fontSize: 30),
+          ),
+          centerTitle: true,
+          elevation: 0.0,
         ),
-        centerTitle: true,
-      ),
-      body: Container(
-        child: ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          itemCount: posts.length,
-          itemBuilder: (BuildContext context, index) {
-            return Card(
-              child: ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Detail(
-                          body: posts[index]['body'],
-                          title: posts[index]['title'])));
-                },
-                title: Text(
-                  posts[index]['title'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
+        body: Container(
+          color: Colors.white,
+          child: ListView.builder(
+            padding: EdgeInsets.all(8.0),
+            itemCount: posts.length,
+            itemBuilder: (BuildContext context, index) {
+              return Card(
+                elevation: 8.0,
+                color: Colors.white,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Detail(
+                            body: posts[index]['body'],
+                            title: posts[index]['title'])));
+                  },
+                  title: Text(
+                    posts[index]['title'],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
